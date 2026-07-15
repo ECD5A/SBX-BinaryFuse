@@ -72,5 +72,5 @@
 
   <rect x="38" y="216" width="882" height="28" rx="6" fill="#071318" stroke="#126377" stroke-width="1"/>
   <text x="53" y="235" class="scan">contains(key) -&gt; mix(seed) -&gt; locate 3 slots -&gt; combine fp16 -&gt; membership result</text>
-  <text x="746" y="94" class="muted">MIT / C++11 / no dependencies</text>
+  <text x="746" y="94" class="muted">MIT/C++11/no dependencies</text>
 </svg>
