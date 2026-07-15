@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="280" viewBox="0 0 980 280" role="img" aria-labelledby="title desc">
+  <title id="title">SBX Binary Fuse16 build and lookup flow</title>
+  <desc id="desc">A terminal-style diagram showing 64-bit keys, a three-wise graph, peeling, fingerprint assignment, and lookup.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#070b0a"/>
+      <stop offset="0.55" stop-color="#0b1210"/>
+      <stop offset="1" stop-color="#151208"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0" stop-color="#24ff6a"/>
+      <stop offset="0.62" stop-color="#00d9ff"/>
+      <stop offset="1" stop-color="#ffb000"/>
+    </linearGradient>
+    <filter id="glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .frame { fill:none; stroke:#1d3d2b; stroke-width:1; }
+      .box { fill:#0c1510; stroke:#24ff6a; stroke-width:1.4; }
+      .graph { fill:#081519; stroke:#00d9ff; stroke-width:1.4; }
+      .build { fill:#181306; stroke:#ffb000; stroke-width:1.4; }
+      .title { fill:#24ff6a; font:700 24px Consolas, monospace; letter-spacing:1px; }
+      .text { fill:#d1ffdc; font:700 15px Consolas, monospace; }
+      .muted { fill:#91a99a; font:13px Consolas, monospace; }
+      .scan { fill:#00d9ff; font:14px Consolas, monospace; }
+      .arrow { stroke:url(#line); stroke-width:2; fill:none; marker-end:url(#arrowhead); }
+      .node { fill:#00d9ff; opacity:0.85; }
+      .edge { stroke:#00a9c7; stroke-width:1; opacity:0.55; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ffb000"/>
+    </marker>
+  </defs>
+
+  <rect width="980" height="280" fill="url(#bg)"/>
+  <rect x="18" y="18" width="944" height="244" class="frame"/>
+  <text x="34" y="52" class="title" filter="url(#glow)">SBX Binary Fuse16</text>
+  <text x="34" y="78" class="muted">static probabilistic membership for 64-bit keys</text>
+
+  <rect x="38" y="112" width="148" height="82" rx="12" class="box"/>
+  <text x="58" y="143" class="text">uint64 keys</text>
+  <text x="58" y="167" class="muted">build once</text>
+
+  <path d="M194 153 L241 153" class="arrow"/>
+
+  <rect x="249" y="112" width="168" height="82" rx="12" class="graph"/>
+  <text x="269" y="143" class="text">3-wise graph</text>
+  <text x="269" y="167" class="muted">h0 / h1 / h2</text>
+  <line x1="380" y1="132" x2="395" y2="151" class="edge"/>
+  <line x1="380" y1="132" x2="370" y2="174" class="edge"/>
+  <line x1="395" y1="151" x2="370" y2="174" class="edge"/>
+  <circle cx="380" cy="132" r="3" class="node"/>
+  <circle cx="395" cy="151" r="3" class="node"/>
+  <circle cx="370" cy="174" r="3" class="node"/>
+
+  <path d="M425 153 L472 153" class="arrow"/>
+
+  <rect x="480" y="112" width="172" height="82" rx="12" class="build"/>
+  <text x="500" y="143" class="text">peel stack</text>
+  <text x="500" y="167" class="muted">reverse assign</text>
+
+  <path d="M660 153 L707 153" class="arrow"/>
+
+  <rect x="715" y="112" width="205" height="82" rx="12" class="box"/>
+  <text x="735" y="143" class="text">fingerprint array</text>
+  <text x="735" y="167" class="muted">contiguous fp16</text>
+
+  <rect x="38" y="216" width="882" height="28" rx="6" fill="#071318" stroke="#126377" stroke-width="1"/>
+  <text x="53" y="235" class="scan">contains(key) -&gt; mix(seed) -&gt; locate 3 slots -&gt; combine fp16 -&gt; membership result</text>
+  <text x="746" y="94" class="muted">MIT / C++11 / no dependencies</text>
+</svg>
